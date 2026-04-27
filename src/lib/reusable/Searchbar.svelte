@@ -1,0 +1,6 @@
+<form action="/search" method="GET">
+    <input type="text" name="searchString" autocomplete="off" placeholder="Search products">
+    <button type="submit">Submit</button>
+</form>
+
+<!-- btn - on:click|once -->
