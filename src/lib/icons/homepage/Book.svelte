@@ -1,0 +1,12 @@
+<svg class="ruleset-svg" fill="#000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" viewBox="0 0 24 24">
+    <g id="catalog">
+        <g>
+            <path d="M12,23.3L0,20V3l4,1V1l8,2.3L20,1v3l4-1v17L12,23.3z M2,18.5l10,2.8l10-2.7v-13l-2,0.5v11l-8,2.2L4,17V6L2,5.5V18.5z
+                M13,5.1V17l5-1.4v-12L13,5.1z M6,15.5l5,1.4V5.1L6,3.7V15.5z"></path>
+        </g>
+    </g>
+</svg>
+
+<style>
+    @import '../../../styles/svgs.css';
+</style>
