@@ -1,7 +1,7 @@
 <script lang="ts">
     import '../../styles/categories.css';
 	let { title, path, array } = $props();
-    console.log('data category layout:', title, path, array);
+    // console.log('data category layout:', title);
 </script>
 
 <section>

@@ -1,6 +1,6 @@
 <script lang="ts">
     import AddNew from "$lib/reusable/AddNew.svelte";
-    import ProductsDropdown from "$lib/reusable/Products-dropdown.svelte";
+    import Filter from "$lib/reusable/Filter.svelte";
     import '../../styles/secondary_style.css';
     import '../../styles/products_page.css';
     import GameCard from "$lib/reusable/Game-card.svelte";
@@ -61,12 +61,12 @@
             </div>
 
             <!-- name -->
-            <ProductsDropdown title="Name">
+            <Filter title="Name">
                 <Select arr={data.gamesData.alphabetArray} title="Name" />
-            </ProductsDropdown>
+            </Filter>
 
             <!-- price -->
-            <ProductsDropdown title="Price">
+            <Filter title="Price">
                 <div class="long-radio-input-div">
                     {#each data.gamesData.priceArray as item (item.id)}
                         <div class="radio-input-container">
@@ -78,22 +78,22 @@
                         </div>
                     {/each}
                 </div>
-            </ProductsDropdown>
+            </Filter>
 
             <!-- rating -->
-            <ProductsDropdown title="Rating">
+            <Filter title="Rating">
                 <Select arr={data.gamesData.ratingArray} title="Rating" />
-            </ProductsDropdown>
+            </Filter>
 
             <!-- genre -->
-            <ProductsDropdown title="Genres">
+            <Filter title="Genres">
                 <Select arr={data.gamesData.genresArr} title="Genres" />
-            </ProductsDropdown>
+            </Filter>
 
             <!-- devs -->
-            <ProductsDropdown title="Developers">
+            <Filter title="Developers">
                 <Select arr={data.gamesData.devsArr} title="Developers" />
-            </ProductsDropdown>
+            </Filter>
             <button class="btn" style="width: 100%;" type="submit">Filter</button>
         </form>
     </div>

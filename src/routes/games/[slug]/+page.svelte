@@ -4,10 +4,10 @@
 
     const { data } = $props();
     const product: GameObject = data.product;
-    console.log('product page: ', product);
+    console.log('product page: ', data.path);
 </script>
 
-<a href="/games" class="btn">Go Back</a>
+<a href="/{data.path}" class="btn">Go Back</a>
 <div class="game-card-content">
     <div class="product-content">
         <div class="product-image" style="background-image: {product.url || 'linear-gradient(to right, red, yellow)'}"></div>

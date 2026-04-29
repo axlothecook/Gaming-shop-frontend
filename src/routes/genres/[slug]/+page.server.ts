@@ -3,23 +3,20 @@ import type { Actions } from './$types';
 import { LINK } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
-  console.log("This is load game function");
-
+  console.log("This is load genre function");
   const { slug } = params;
 
-  // console.log('url: ', slug);
+  console.log('url: ', slug);
 
-  const response = await fetch(`${LINK}/games/${slug}`);
+  const response = await fetch(`${LINK}/genres/${slug}`);
   const responseBody = await response.json();
 
-  // console.log('response: ', responseBody);
-
-  // set up backfall
+  console.log('response: ', responseBody.data.genre.name);
 
   return {
-    path: "games",
-    product: responseBody.data.product,
-    errors: responseBody.data.errors
+    path: responseBody.data.path,
+    category: responseBody.data.genre,
+    productsArr: responseBody.data.productsArr
   };
 };
 
@@ -28,7 +25,7 @@ export const actions = {
     const formData = await request.formData();
     console.log('formData: ', formData);
 
-    // const response = await fetch(`${LINK}/games`);
+    // const response = await fetch(`${LINK}/genres`);
     // const responseBody = await response.json();
 
     // console.log('responseBody: ', responseBody.data);

@@ -1,21 +1,29 @@
-import type { GameObject, GameState } from "../../../app";
+// import type { GameObject, GameState } from "../../../app";
 
-type ObjOrNull = GameObject | null;
+// type ObjOrNull = GameObject | null;
 
-class Game implements GameState {
-    product: ObjOrNull;
+// interface GameState {
+// 			product: ObjOrNull,
+// 			getGame(): GameObject,
+// 			resetGame(): void
+// 		}
 
-    constructor() {
-        this.product = $state(null);
-    };
+// type ObjOrNull = GameObject | null;
 
-    getGame() {
-        return this.product;
-    };
+// class Game implements GameState {
+//     product: ObjOrNull;
 
-    resetGame(obj: ObjOrNull) {
-        this.product = obj;
-    };
-};
+//     constructor() {
+//         this.product = $state(null);
+//     };
 
-export const gameClass = new Game;
+//     getGame() {
+//         return this.product;
+//     };
+
+//     resetGame(obj: ObjOrNull) {
+//         this.product = obj;
+//     };
+// };
+
+// export const gameClass = new Game;

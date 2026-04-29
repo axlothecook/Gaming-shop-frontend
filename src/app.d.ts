@@ -32,9 +32,6 @@ declare global {
 			rating: NumOrNull,
 			isDefault: boolean
 		}
-
-		type ObjOrNull = GameObject | null;
-
 		interface CategoryObject {
 			_id: string,
 			name: string,
@@ -42,16 +39,10 @@ declare global {
 			isDefault: boolean
 		}
 
-		interface GameState {
-			product: ObjOrNull,
-			getGame(): GameObject,
-			resetGame(): void
-		}
-
-		interface CategoryState {
-			product: CategoryObject,
-			getCategory(): CategoryObject,
-			getCategory(): void
+		interface CategoryDetailsObject {
+			title: string,
+			path: string,
+			array: CategoryObject[]
 		}
 	}
 }
@@ -61,6 +52,5 @@ export {
 	PaginationObject,
 	GameObject,
 	CategoryObject,
-	GameState,
-	CategoryState
+	CategoryDetailsObject
 };

@@ -2,13 +2,13 @@ import type { Load } from "@sveltejs/kit";
 import { LINK } from '$env/static/private';
 
 export const load: Load = async () => {
-  console.log("This is load genre function");
+  console.log("This is load dev function");
 
-//   const response = await fetch(`${LINK}/genres/${slug}`);
-  const response = await fetch(`${LINK}/genres`);
+//   const response = await fetch(`${LINK}/developers/${slug}`);
+  const response = await fetch(`${LINK}/developers`);
   const responseBody = await response.json();
 
-  // console.log('response genre: ', responseBody.data.path);
+//   console.log('response developers: ', responseBody.data.title);
 
   //make if error () then return fail
 
