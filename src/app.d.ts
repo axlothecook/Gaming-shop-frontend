@@ -3,18 +3,21 @@
 declare global {
 	namespace App {
 		type NumOrNull = number | null;
+		type StringOrNull = string | null;
+		type StringOrAny = string | any;
+
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
-		interface SortInputObject {
-			id: string;
-			name: string;
-			value: string;
+		interface NavbarLink {
+			id: number;
+			href: string;
 			text: string;
+			imgPath: StringOrNull;
+			txtClr: StringOrNull;
 		}
-
 		interface PaginationObject {
 			id: number;
 			name: string;
@@ -42,32 +45,25 @@ declare global {
 			isDefault: boolean
 		}
 
-		interface GameState {
-			product: ObjOrNull,
-			getGame(): GameObject,
-			resetGame(): void
-		}
-
-		interface CategoryState {
-			product: CategoryObject,
-			getCategory(): CategoryObject,
-			getCategory(): void
-		}
-
 		interface CategoryDetailsObject {
 			title: string,
 			path: string,
 			array: CategoryObject[]
 		}
+
+		interface ErrorObject {
+			type: string;
+			body: Array[StringOrAny];
+			code: number;
+		}
 	}
 }
 
 export {
-	SortInputObject,
+	NavbarLink,
 	PaginationObject,
 	GameObject,
 	CategoryObject,
-	GameState,
-	CategoryState,
 	CategoryDetailsObject,
+	ErrorObject,
 };

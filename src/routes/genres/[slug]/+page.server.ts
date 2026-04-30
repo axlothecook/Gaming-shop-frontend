@@ -1,18 +1,24 @@
 import type { Load } from "@sveltejs/kit";
 import type { Actions } from './$types';
 import { LINK, SVELTE_URL } from '$env/static/private';
-import { fail, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
   console.log("This is load genre function");
   const { slug } = params;
 
-  console.log('url: ', slug);
+  // console.log('url: ', slug);
 
   const response = await fetch(`${LINK}/genres/${slug}`);
   const responseBody = await response.json();
 
-  console.log('response: ', responseBody.data.genre.name);
+  // console.log('response: ', responseBody);
+
+  if (responseBody.errCode) {
+    error(responseBody.errCode, {
+      message: responseBody.errBody[0].msg
+    });
+  };
 
   return {
     path: responseBody.data.path,
@@ -25,12 +31,28 @@ export const actions = {
   delete: async ({params}) => {
 
     const { slug } = params;
-    console.log('dlt genre request: ', params);
+    // console.log('dlt genre request: ', params);
 
     const response = await fetch(`${LINK}/genres/${slug}/delete`);
     const responseBody = await response.json();
 
-    console.log('responseBody: ', responseBody);
+    // console.log('responseBody: ', responseBody);
+
+    if (responseBody.errCode) {
+      if (responseBody.errCode === 500) {
+        error(500, {
+          message: responseBody.errBody[0].msg
+        });
+      } else {
+        return fail(responseBody.errCode, {
+          error: {
+            type: responseBody.errType,
+            body: responseBody.errBody,
+            code: responseBody.errCode,
+          }
+        });
+      };
+    };
 
     redirect(303, `${SVELTE_URL}/genres`);
   } 

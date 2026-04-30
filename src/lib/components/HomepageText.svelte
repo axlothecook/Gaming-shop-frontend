@@ -12,7 +12,7 @@
         <h3>We prepared a lot of goodies for you to check out</h3>
     </section>
     <section class="section-introduction">
-        <h2>What is Game Shop?</h2>
+        <h2>What is it?</h2>
         <h3>A sandbox for tracking products by categories and catalog.</h3>
     </section>
     <section class="section-ruleset">

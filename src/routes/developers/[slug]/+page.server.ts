@@ -1,7 +1,7 @@
 import type { Load } from "@sveltejs/kit";
 import type { Actions } from './$types';
 import { LINK, SVELTE_URL } from '$env/static/private';
-import { fail, redirect } from '@sveltejs/kit';
+import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
   console.log("This is load dev function");
@@ -13,6 +13,11 @@ export const load: Load = async ({ params }) => {
   const responseBody = await response.json();
 
 //   console.log('response: ', responseBody.data);
+  if (responseBody.errCode) {
+    error(responseBody.errCode, {
+      message: responseBody.errBody[0].msg
+    });
+  };
 
   return {
     path: responseBody.data.path,
@@ -25,12 +30,28 @@ export const actions = {
   delete: async ({params}) => {
 
     const { slug } = params;
-    console.log('dlt dev request: ', params);
+    // console.log('dlt dev request: ', params);
 
     const response = await fetch(`${LINK}/developers/${slug}/delete`);
     const responseBody = await response.json();
 
-    console.log('responseBody: ', responseBody);
+    // console.log('responseBody: ', responseBody);
+
+    if (responseBody.errCode) {
+      if (responseBody.errCode === 500) {
+        error(500, {
+          message: responseBody.errBody[0].msg
+        });
+      } else {
+        return fail(responseBody.errCode, {
+          error: {
+            type: responseBody.errType,
+            body: responseBody.errBody,
+            code: responseBody.errCode,
+          }
+        });
+      };
+    };
 
     redirect(303, `${SVELTE_URL}/developers`);
   } 

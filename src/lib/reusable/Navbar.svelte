@@ -1,17 +1,16 @@
 <script lang="ts">
     import Searchbar from "./Searchbar.svelte";
     import { getContext } from 'svelte';
-    const data: Function = getContext('navbarData');
+    import type { NavbarLink } from '../../app';
+    const links: NavbarLink[] = getContext('navbarData');
     import Logo from "$lib/icons/Logo.svelte";
-    // console.log('inside: ');
-    // console.log(data());
 </script>
 
 
 <nav>
     <ul>
         <div>
-            {#each data().navbarLinks as link (link.id)}
+            {#each links as link (link.id)}
                 <li>
                     <a href={link.href}>
                         <span style="display: flex; align-items: center; gap: .3rem;">

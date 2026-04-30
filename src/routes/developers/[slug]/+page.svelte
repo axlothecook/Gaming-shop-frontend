@@ -1,7 +1,7 @@
 <script lang="ts">
+  import ErrorPopup from '$lib/reusable/ErrorPopup.svelte';
   import IndividualCategory from '$lib/reusable/Individual-Category.svelte';
-
-  const { data } = $props();
+  let { data, form } = $props();
   const dev = {
     title: data.category.name,
     btnTitle: "Go back to developers",
@@ -9,7 +9,9 @@
     details: data.category,
     productsArr: data.productsArr
   };
-  console.log('developer page: ', dev.title);
 </script>
 
-<IndividualCategory category={dev} />
+<ErrorPopup error={form?.error || null} />
+<div class="content">
+  <IndividualCategory category={dev} />
+</div>

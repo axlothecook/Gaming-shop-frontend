@@ -1,13 +1,15 @@
 <script lang="ts">
   import EditCategory from '$lib/reusable/Edit-Category.svelte';
-
-  const { data } = $props();
+  import ErrorPopup from '$lib/reusable/ErrorPopup.svelte';
+  let { data, form } = $props();
   const dev = {
     title: data.category.name,
     path: data.path,
     details: data.category
   };
-//   console.log('update category (dev) page: ', dev.title);
 </script>
 
-<EditCategory title={dev.title} path={dev.path} details={data.category} />
+<ErrorPopup error={form?.error || null} />
+<div class="content">
+  <EditCategory title={dev.title} path={dev.path} details={data.category} />
+</div>

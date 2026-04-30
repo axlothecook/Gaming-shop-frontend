@@ -1,5 +1,6 @@
 import type { Load } from "@sveltejs/kit";
 import { LINK } from '$env/static/private';
+import { error } from "@sveltejs/kit";
 
 export const load: Load = async () => {
   console.log("This is load dev function");
@@ -9,7 +10,11 @@ export const load: Load = async () => {
 
 //   console.log('response developers: ', responseBody.data);
 
-  //make if error () then return fail
+  if (responseBody.errCode) {
+    error(500, {
+      message: responseBody.errBody[0].msg
+    });
+  };
 
   return {
     title: responseBody.data.title,
