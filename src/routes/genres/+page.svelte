@@ -1,14 +1,18 @@
 <script lang="ts">
   import Categories from '$lib/reusable/Categories.svelte';
+  import type { CategoryDetailsObject } from '../../app.js';
     import '../../styles/categories.css';
-	import { getContext, setContext } from 'svelte';
+	import { setContext } from 'svelte';
 	let { data } = $props();
-    console.log('data genre layout:', data);
+    // console.log('data genre layout:', data.path);
 
-	setContext('genresData', () => data);
+    const category: CategoryDetailsObject = { 
+        title: data.title, 
+        path: data.path, 
+        array: data.array 
+    };
 
-    const { title, path, array } = getContext('genresData');
+	// setContext('genresData', category.title);
 </script>
 
-<Categories title={title} path={path} array={array} />
-
+<Categories title={category.title} path={category.path} array={category.array} />

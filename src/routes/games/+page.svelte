@@ -44,7 +44,7 @@
     // console.log('pagesLengthArr: ', pagesLengthArr);
 </script>
 
-<AddNew title="Games" />
+<AddNew title="Games" path="games" />
 <div class="main-content">
     <div class="filters-wrapper">
         <form method="GET" action="/games" class="filter-form" id="filter-form">

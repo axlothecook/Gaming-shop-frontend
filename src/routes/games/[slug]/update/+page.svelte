@@ -33,10 +33,10 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" autocomplete="off" required>{updateData().product.description}</textarea>
             </div>
-            <!-- <div class="image-input-wrapper">
+            <div class="image-input-wrapper">
                 <label for="file">Photo</label>
                 <input type="file" class="image-input" name="file"/>
-            </div> -->
+            </div>
         </div>
         <div class="selects-wrapper">
             <SelectEdit 

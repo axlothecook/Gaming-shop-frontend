@@ -1,16 +1,12 @@
 <script lang="ts">
     import '../../styles/categories.css';
+  import AddNew from './AddNew.svelte';
 	let { title, path, array } = $props();
-    console.log('data category layout:', title, path, array);
+    console.log('data category layout:', title);
 </script>
 
 <section>
-    <div class="title-and-add-btn-div">
-        <h1>{title}</h1>
-        <a href="/{path}/new">
-            <button class="add-btn">Add New</button>
-        </a>
-    </div>
+    <AddNew title={title} path={path} />
     <div class="category-wrapper">
     {#each array as item (item._id) }
         <a href="/{path}/{item._id.toString()}">

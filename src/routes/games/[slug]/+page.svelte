@@ -1,5 +1,6 @@
 <script lang="ts">
     import Star from "$lib/icons/Star.svelte";
+    import { enhance } from '$app/forms';
     import type { GameObject } from "../../../app";
 
     const { data } = $props();
@@ -56,10 +57,12 @@
         </div>
     </div>
 
-    {#if product.isDefault === true}
+    {#if product.isDefault === false}
         <div class="option-buttons">
             <a href="/games/{product._id}/update" class="btn">Update</a>
-            <a href="/games/{product._id}?/delete" class="btn">Delete</a>
+            <form method="POST" action="?/delete" use:enhance>
+                <button type="submit" class="btn">Delete</button>
+            </form>
         </div>
     {/if}
 </div>

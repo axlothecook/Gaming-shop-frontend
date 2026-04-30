@@ -15,7 +15,7 @@
                 <h3>
                     {#each product.developers as dev}
                         {#if dev !== product.developers[product.developers.length - 1]} 
-                            {dev},
+                            {dev},&nbsp
                         {:else}
                             {dev}
                         {/if}

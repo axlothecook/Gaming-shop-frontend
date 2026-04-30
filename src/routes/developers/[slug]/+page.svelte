@@ -1,5 +1,15 @@
-<h1>Developer</h1>
+<script lang="ts">
+  import IndividualCategory from '$lib/reusable/Individual-Category.svelte';
 
-<a href="/developers/4/update">update</a>
-<a href="/developers/4/delete">delete</a>
-<a href="/">go home</a>
+  const { data } = $props();
+  const dev = {
+    title: data.category.name,
+    btnTitle: "Go back to developers",
+    path: data.path,
+    details: data.category,
+    productsArr: data.productsArr
+  };
+  console.log('developer page: ', dev.title);
+</script>
+
+<IndividualCategory category={dev} />

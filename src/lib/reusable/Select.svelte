@@ -2,13 +2,16 @@
     import Checked from "$lib/icons/checkbox/Checked.svelte";
     import Unchecked from "$lib/icons/checkbox/Unchecked.svelte";
 
-    const { arr, title } = $props();
+    const { arr, title = null, selectTitle = null, field = null } = $props();
     // console.log('passed array: ', arr[0]);
 </script>
 
 
 <div>
-    <select name="{title}" id="{title}-select" multiple>
+    {#if selectTitle }
+        <h4 style="padding-bottom: .7rem">{selectTitle}</h4>
+    {/if}
+    <select name="{title || field }" id="{title || field }-select" multiple>
         {#each arr as item (item.id ? item.id : item._id) }
             <option value="{item.name}">
                 {#if item.checked === "true" }

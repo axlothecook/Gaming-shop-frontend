@@ -1,4 +1,13 @@
-<h1>Update a Developer</h1>
+<script lang="ts">
+  import EditCategory from '$lib/reusable/Edit-Category.svelte';
 
-<a href="/developers/4">save</a>
-<a href="/">go home</a>
+  const { data } = $props();
+  const dev = {
+    title: data.category.name,
+    path: data.path,
+    details: data.category
+  };
+//   console.log('update category (dev) page: ', dev.title);
+</script>
+
+<EditCategory title={dev.title} path={dev.path} details={data.category} />

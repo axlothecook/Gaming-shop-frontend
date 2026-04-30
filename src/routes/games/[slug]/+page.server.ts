@@ -1,6 +1,7 @@
 import type { Load } from "@sveltejs/kit";
 import type { Actions } from './$types';
-import { LINK } from '$env/static/private';
+import { fail, redirect } from '@sveltejs/kit';
+import { LINK, SVELTE_URL } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
   console.log("This is load game function");
@@ -20,18 +21,16 @@ export const load: Load = async ({ params }) => {
 };
 
 export const actions = {
-  delete: async ({ request }) => {
-    const formData = await request.formData();
-    console.log('formData: ', formData);
+  delete: async ({params}) => {
 
-    // const response = await fetch(`${LINK}/games`);
-    // const responseBody = await response.json();
+    const { slug } = params;
+    console.log('dlt game request: ', params);
 
-    // console.log('responseBody: ', responseBody.data);
+    const response = await fetch(`${LINK}/games/${slug}/delete`);
+    const responseBody = await response.json();
 
-    // return {
-    //   gamesData: responseBody.data,
-    //   errors: responseBody.data.errors
-    // };
-  }
-}
+    console.log('responseBody: ', responseBody);
+
+    redirect(303, `${SVELTE_URL}/games`);
+  } 
+} satisfies Actions;

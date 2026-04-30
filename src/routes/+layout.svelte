@@ -7,7 +7,17 @@
 	import '../styles/global.css';
 	let { data, children } = $props();
 	setContext('navbarData', () => data);
-	// $inspect(data);
+	
+	// function testForError() {
+    //     const error = document.getElementById('error-wrapper');
+    //     if(document.body.contains(error)) {
+    //         setTimeout(() => {
+    //             error.style.display = 'none';
+    //         }, 3000);
+    //     };
+    // };
+
+    // testForError();
 </script>
 
 <svelte:head>

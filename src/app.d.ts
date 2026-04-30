@@ -53,6 +53,12 @@ declare global {
 			getCategory(): CategoryObject,
 			getCategory(): void
 		}
+
+		interface CategoryDetailsObject {
+			title: string,
+			path: string,
+			array: CategoryObject[]
+		}
 	}
 }
 
@@ -62,5 +68,6 @@ export {
 	GameObject,
 	CategoryObject,
 	GameState,
-	CategoryState
+	CategoryState,
+	CategoryDetailsObject,
 };

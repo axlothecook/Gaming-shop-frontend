@@ -9,16 +9,14 @@ export const load: Load = async ({ params }) => {
 
 //   console.log('url: ', slug);
 
-  const response = await fetch(`${LINK}/games/${slug}/update`);
+  const response = await fetch(`${LINK}/genres/${slug}/update`);
   const responseBody = await response.json();
 
-//   console.log('response: ', responseBody);
+//   console.log('response: ', responseBody.data);
 
   return {
-    product: responseBody.data.game,
-    genresArray: responseBody.data.genresArray,
-    devsArray: responseBody.data.devsArray,
-    errors: responseBody.data.errors
+    path: responseBody.data.path,
+    category: responseBody.data.genre
   };
 };
 
@@ -27,19 +25,21 @@ export const actions = {
     console.log('in update game function');
 
     const { slug } = params;
+    // console.log('id:', slug);
 
     const formData = await request.formData();
     // console.log('formdata: ', formData);
 
-    const response = await fetch(`${LINK}/games/${slug}/update`, {
+    const response = await fetch(`${LINK}/genres/${slug}/update`, {
       method: 'POST',
       body: formData
     });
     const responseBody = await response.json();
+    console.log('responseBody: ', responseBody);
 
     if (responseBody.errType) {
-      console.error(responseBody.errMsg);
-      console.log(responseBody.errBody);
+    //   console.error(responseBody.errMsg);
+    //   console.log(responseBody.errBody);
 
       if (responseBody.errType === 'Multer') {
         const file = formData.get('file');
@@ -52,7 +52,6 @@ export const actions = {
       } else console.log('unindentified error while updating the game');
     };
 
-    // console.log('responseBody: ', responseBody);
-    redirect(303, `${SVELTE_URL}/games/${slug}`);
+    redirect(303, `${SVELTE_URL}/genres/${slug}`);
   }
 } satisfies Actions;
