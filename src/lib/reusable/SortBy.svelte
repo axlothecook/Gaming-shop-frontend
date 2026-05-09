@@ -1,18 +1,24 @@
 <script lang="ts">
-    let { item } = $props();
-    // console.log('radio input: ', item);
-    // let isPressed = false;
-	// $: btnVariant = isPressed ? "filled" : "outline";
+    let { array, activeSort, onclick } = $props();
+    const ascendedSort = array[0];
+    const descendedSort = array[1];
 </script>
-<button 
-    class="btn active-radio-btn"  
-    id="{item.id}" 
-    name="{item.name}" 
-    value="{item.value}" 
-    type="submit"
-    // on:click={() => isPressed = !isPressed}
-    // color="green"
-	// variant={btnVariant}
+
+<div class="radio-input-container">
+    <button 
+        class="radio-btn {(!activeSort || String(activeSort) === String(ascendedSort.value)) ? "active-btn" : ''}"  
+        id="{ascendedSort.id}" 
+        type="button"
+        onclick={() => onclick(ascendedSort.value)}
     >
-    <h3>{item.text}</h3>
-</button>
+        <h3>{ascendedSort.text}</h3>
+    </button>
+    <button 
+        class="radio-btn {String(activeSort) === String(descendedSort.value)? "active-btn" : ''}"  
+        id="{descendedSort.id}" 
+        type="button"
+        onclick={() => onclick(descendedSort.value)}
+    >
+        <h3>{descendedSort.text}</h3>
+    </button>
+</div>

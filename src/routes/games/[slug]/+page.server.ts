@@ -12,7 +12,7 @@ export const load: Load = async ({ params }) => {
   const response = await fetch(`${LINK}/games/${slug}`);
   const responseBody = await response.json();
 
-  console.log('response id: ', responseBody);
+  // console.log('response id: ', responseBody);
 
   if (responseBody.errCode) {
     error(responseBody.errCode, {

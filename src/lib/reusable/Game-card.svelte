@@ -1,14 +1,11 @@
-<script>
-  import Star from "$lib/icons/Star.svelte";
-
-    const { product } = $props();
-    // console.log(product)
+<script lang="ts">
+    import Star from "$lib/icons/Star.svelte";
+    let { product } = $props();
 </script>
 
 <a href="/games/{product._id}">
     <div class="product-card-wrapper" id="{product._id}">
-    <!--background-image: {product.url} -->
-        <div class="product-card-img" style="background-image: {product.url || 'linear-gradient(to right, red , yellow)'}"></div>
+    <div class="product-card-img" style="background-image: {product.url || 'linear-gradient(to right, red , yellow)'}"></div>
         <div class="product-card-info">
             <h2>{product.name}</h2>
             <div class="developer-card-info">

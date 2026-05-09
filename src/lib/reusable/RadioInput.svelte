@@ -1,12 +1,12 @@
 <script lang="ts">
-    let { item, additionalText = null, replaceValue = null } = $props();
-    // console.log('radio input: ', item, additionalText);
+    let { item, onclick, selected = false } = $props();
 </script>
-<button class="btn active-radio-btn"  id="{item.id}" name="{item.name}" value="{replaceValue ? replaceValue : item.value}" type="submit">
-    <h3>{additionalText ? additionalText : item.text ? item.text : item.value}</h3>
+<button 
+    class="btn"  
+    class:selected
+    id="{item.id}" 
+    type="button"
+    onclick={onclick}
+>
+    {item.value}
 </button>
-
-<!-- <h3>
-    <input type="radio" id="{item.id}" name="{item.name}" value="{replaceValue ? replaceValue : item.value}" />
-    {additionalText ? additionalText : item.text ? item.text : item.value}
-</h3> -->

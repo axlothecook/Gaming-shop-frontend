@@ -20,7 +20,7 @@ export const load: Load = async () => {
   return {
     title: responseBody.data.title,
     genresArr: responseBody.data.genreArr,
-    devsArr: responseBody.data.devArr,
+    devsArr: responseBody.data.devArr
   };
 };
 

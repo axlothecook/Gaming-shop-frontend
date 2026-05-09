@@ -1,6 +1,7 @@
 <script lang="ts">
   import ErrorPopup from '$lib/reusable/ErrorPopup.svelte';
-    import Select from '$lib/reusable/Select.svelte';
+  import SelectMultiple from '$lib/reusable/SelectMultiple.svelte';
+    import Select from '$lib/reusable/SelectMultiple.svelte';
     import '../../../styles/editProductStyle.css';
     let { data, form } = $props();
 </script>
@@ -38,8 +39,8 @@
             </div>
             <div>
                 <div class="selects-wrapper">
-                    <Select arr={data.genresArr} field="genre" selectTitle="Genres" />
-                    <Select arr={data.devsArr} field="dev" selectTitle="Developers" />
+                    <SelectMultiple arr={data.genresArr} field="genre" selectTitle="Genres" />
+                    <SelectMultiple arr={data.devsArr} field="dev" selectTitle="Developers" />
                 </div>
                 <div>
                     <label for="description">Description</label>

@@ -5,6 +5,8 @@ declare global {
 		type NumOrNull = number | null;
 		type StringOrNull = string | null;
 		type StringOrAny = string | any;
+		type FilterStateEntry = { value: Set<string> | string | null };
+		type Params = string | string[] | null;
 
 		// interface Error {}
 		// interface Locals {}
@@ -41,7 +43,6 @@ declare global {
 		interface CategoryObject {
 			_id: string,
 			name: string,
-			numberOfGames: number,
 			isDefault: boolean
 		}
 
@@ -56,6 +57,13 @@ declare global {
 			body: Array[StringOrAny];
 			code: number;
 		}
+
+		interface FilterConfig {
+			key: string;           // URL param name
+			arrayKey: string;       // key on responseBody.data / gamesData
+			type: 'multi' | 'single';
+			toggleable?: boolean;   // can the user click again to deselect (price yes, sort/page no)
+		};
 	}
 }
 
@@ -66,4 +74,8 @@ export {
 	CategoryObject,
 	CategoryDetailsObject,
 	ErrorObject,
+	FilterConfig,
+
+	Params,
+	FilterStateEntry
 };

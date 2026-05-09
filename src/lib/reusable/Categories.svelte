@@ -2,7 +2,7 @@
     import '../../styles/categories.css';
   import AddNew from './AddNew.svelte';
 	let { title, path, array } = $props();
-    console.log('data category layout:', title);
+    // console.log('data category layout:', title);
 </script>
 
 <section>

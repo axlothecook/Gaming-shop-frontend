@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     // import '../../styles/secondary_style.css'; // chekc if 2rem can be applied to everywhere in title-and-dev btn
     const { title, path } = $props();
 </script>

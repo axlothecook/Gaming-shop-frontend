@@ -24,6 +24,7 @@
 .check-type {
     width: 1.5rem;
     fill: transparent;
+    transition: transform 0.4s ease;
 }
 
 .arrow-left {

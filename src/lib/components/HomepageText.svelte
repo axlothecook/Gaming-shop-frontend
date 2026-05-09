@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Brush from "../icons/homepage/Brush.svelte";
     import Book from "../icons/homepage/Book.svelte";
     import Feather from '../icons/homepage/Feather.svelte';

@@ -1,18 +1,26 @@
 <script lang="ts">
+    import { slide } from 'svelte/transition';
     import ArrowDown from "$lib/icons/arrows/Arrow-down.svelte";
 
     const { title, children } = $props();
-    let counter: boolean = $state(false);
+    let counter: boolean = $state(true);
     const onclick = () => counter = !counter;
 </script>
 
 <section> 
     <div class="create-selects">
-        <!-- {onclick} role="button" tabindex="1" -->
-        <div class="filter-category">
+        <button 
+            class="filter-category"
+            {onclick}
+            type="button"
+        >
             <h2>{title}</h2>
             <ArrowDown counter={counter} />
-        </div>
-        {@render children()}
+        </button>
+        {#if counter}
+            <div transition:slide={{ duration: 400 }}>
+                {@render children()}
+            </div>
+        {/if}
     </div>
 </section>

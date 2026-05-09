@@ -22,7 +22,8 @@ export const load: Load = async ({ params }) => {
   return {
     path: responseBody.data.path,
     category: responseBody.data.dev,
-    productsArr: responseBody.data.productsArr
+    productsArr: responseBody.data.productsArr,
+    numberOfGames: responseBody.data.numberOfGames
   };
 };
 

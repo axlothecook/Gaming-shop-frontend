@@ -1,5 +1,4 @@
-<script>
-  import { transform } from "typescript";
+<script lang="ts">
     let { counter } = $props();
 </script>
 

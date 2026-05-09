@@ -7,7 +7,8 @@
     btnTitle: "Go back to genres",
     path: data.path,
     details: data.category,
-    productsArr: data.productsArr
+    productsArr: data.productsArr,
+    numberOfGames: data.numberOfGames
   };
 </script>
 

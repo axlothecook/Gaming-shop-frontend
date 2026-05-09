@@ -5,6 +5,7 @@ import { error } from "@sveltejs/kit";
 export const load: Load = async () => {
   console.log("This is load dev function");
 
+  // await new Promise(resolve => setTimeout(resolve, 3000));
   const response = await fetch(`${LINK}/developers`);
   const responseBody = await response.json();
 

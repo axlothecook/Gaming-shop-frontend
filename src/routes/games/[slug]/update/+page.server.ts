@@ -4,7 +4,6 @@ import type { Actions } from './$types';
 import { LINK, SVELTE_URL } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
-  console.log("This is load games function");
   const { slug } = params;
 
   const response = await fetch(`${LINK}/games/${slug}/update`);
@@ -21,8 +20,7 @@ export const load: Load = async ({ params }) => {
   return {
     product: responseBody.data.game,
     genresArray: responseBody.data.genresArray,
-    devsArray: responseBody.data.devsArray,
-    errors: responseBody.data.errors
+    devsArray: responseBody.data.devsArray
   };
 };
 

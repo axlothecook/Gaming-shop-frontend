@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Copyright from "../icons/footer/Copyright.svelte";
 </script>
 

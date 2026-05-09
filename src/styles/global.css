@@ -21,6 +21,8 @@ h1, h2, h3, h4, h5, p {
   margin: 0;
   padding: 0;
   font-weight: 400;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 input, button, textarea, input:focus, button:hover, button:focus, textarea:hover, textarea:focus {
@@ -66,7 +68,6 @@ a:hover, li:hover {
 
 select {
   min-width: 15rem;
-  padding: .5rem;
   border-radius: 7px;
   background-color: var(--main-bg-clr);
   border-color: var(--main-txt-clr);
@@ -96,7 +97,7 @@ select:open::picker-icon {
 
 option {
   background-color: var(--main-bg-clr);
-  padding: .3rem;
+  padding: .3rem .5rem;
   transition: 0.2s;
 }
 
@@ -105,11 +106,13 @@ option:hover {
 }
 
 option:first-of-type {
+  padding-top: .5rem;
   border-radius: 8px 0 0 0;
 }
 
 option:last-of-type {
   border-radius: 0 0 0px 8px;
+  padding-bottom: .5rem;
 }
 
 option:not(option:last-of-type) {
@@ -117,9 +120,7 @@ option:not(option:last-of-type) {
 }
 
 option::checkmark {
-  order: 1;
-  margin-left: auto;
-  content: "☑️";
+  display: none;
 }
 
 ::picker(select) {
@@ -169,9 +170,6 @@ footer {
   gap: .2rem;
   align-items: center;
   justify-content: center;
-  /* position: fixed;
-  bottom: 0;
-  width: 100%; */
 }
 
 footer h1 {
@@ -358,23 +356,6 @@ form[action="/search"] button:hover {
   border: 1px solid var(--main-txt-clr);
   border-radius: 7px;
   color: var(--main-txt-clr);
-}
-
-@keyframes disappear {
-  0% {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  80% {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  100% {
-    visibility: hidden;
-    opacity: 0;
-  }
 }
 
 @media only screen and (max-width:  1780px) {
