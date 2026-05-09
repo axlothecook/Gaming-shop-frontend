@@ -5,6 +5,15 @@
     import ErrorPopup from "$lib/reusable/ErrorPopup.svelte";
     let { data, form } = $props();
     const product: GameObject = data.product;
+    let imgLoaded = $state(false);
+    let showImgSpinner = $state(false);
+
+    $effect(() => {
+        if (!imgLoaded) {
+            const timeout = setTimeout(() => { showImgSpinner = true; }, 400);
+            return () => clearTimeout(timeout);
+        };
+    });
 </script>
 
 <ErrorPopup error={form?.error || null} />
@@ -12,7 +21,21 @@
     <a href="/games" class="btn">Go Back</a>
     <div class="game-card-content">
         <div class="product-content">
-            <div class="product-image" style="background-image: {product.url || 'linear-gradient(to right, red, yellow)'}"></div>
+            <div class="product-image">
+                {#if !imgLoaded && showImgSpinner}
+                    <div class="img-spinner-overlay">
+                        <div class="spinner"></div>
+                    </div>
+                {/if}
+                {#if product.url}
+                    <img
+                        src={product.url}
+                        alt={product.name}
+                        onload={() => imgLoaded = true}
+                        class:loaded={imgLoaded}
+                    />
+                {/if}
+            </div>
             <div class="product-info">
                 <div class="basic-info">
                     <div class="title-div">

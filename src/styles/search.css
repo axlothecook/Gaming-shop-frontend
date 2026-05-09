@@ -15,10 +15,6 @@
   gap: 1rem;
 }
 
-#no-product-h1 {
-  margin: 15rem auto;
-}
-
 @media only screen and (max-width:  675px) {
   .main-content {
     padding: 1rem;

@@ -3,23 +3,43 @@
     import GameCard from './Game-card.svelte';
     import { enhance } from '$app/forms';
 	let { category } = $props();
+    let imgLoaded = $state(false);
+    let showImgSpinner = $state(false);
+
+    $effect(() => {
+        if (!imgLoaded) {
+            const t = setTimeout(() => { showImgSpinner = true; }, 400);
+            return () => clearTimeout(t);
+        }
+    });
 </script>
 
 <a href="/{category.path}" class="btn">Go Back</a>
 <div class="main-content">
     <div class="category-info">
-        <div class="category-img" style="background-image: {category.details.url}; background-size: 70% 120%">
+        <div class="category-img">
+            {#if !imgLoaded && showImgSpinner}
+                <div class="img-spinner-overlay">
+                    <div class="spinner"></div>
+                </div>
+            {/if}
+            <img
+                src={category.details.url}
+                alt={category.details.name}
+                onload={() => imgLoaded = true}
+                class:loaded={imgLoaded}
+            />
             <div class="category-details">
                 <h1>{category.details.name}</h1>
                 <h3><i>
                     Contains {category.numberOfGames}
-                    {#if (category.numberOfGames === 1) }
+                    {#if (category.numberOfGames === 1)}
                         game
                     {:else}
                         games
                     {/if}
                 </i></h3>
-                {#if (category.isDefault) }
+                {#if (category.isDefault)}
                     <div class="option-buttons">
                         <a href="/{category.path}/{category.details._id}/update" class="btn">Update</a>
                         <form method="POST" action="?/delete" use:enhance>
@@ -31,7 +51,7 @@
         </div>
     </div>
     <div class="products-list">
-        {#each category.productsArr as product (product._id) }
+        {#each category.productsArr as product (product._id)}
             <GameCard product={product} />
         {/each}
     </div>

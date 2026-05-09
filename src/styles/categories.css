@@ -29,12 +29,27 @@ section h1 {
 }
 
 .category-card {
-  background-color: #fff;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 14rem;
   border-radius: 10px;
+  background-color: #fff;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-card img.loaded {
+  opacity: 1; 
 }
 
 .category-card:hover {
@@ -58,10 +73,6 @@ section h1 {
   color: #000;
   font-size: 1.6rem;
   font-weight: 800;
-}
-
-.dev-card {
-  background-size: 95%;
 }
 
 .title-and-add-btn-div {

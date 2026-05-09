@@ -1,7 +1,7 @@
 <script lang="ts">
+    import { beforeNavigate } from '$app/navigation';
     import AddNew from "$lib/reusable/AddNew.svelte";
     import ProductsDropdown from "$lib/reusable/Products-dropdown.svelte";
-    import '../../styles/secondary_style.css';
     import '../../styles/products_page.css';
     import GameCard from "$lib/reusable/Game-card.svelte";
     import RadioInput from "$lib/reusable/RadioInput.svelte";
@@ -40,6 +40,15 @@
         };
     });
 
+    beforeNavigate((nav) => {
+        if (nav.to && nav.to.url.pathname !== '/games') {
+            for (let i = sessionStorage.length - 1; i >= 0; i--) {
+                const key = sessionStorage.key(i);
+                if (key?.startsWith('dropdown:')) sessionStorage.removeItem(key);
+            };
+        };
+    });
+
     const submitWithState = () => {
         const form = document.getElementById('main-form') as HTMLFormElement;
         form.querySelectorAll('input[data-injected]').forEach(element => element.remove()); 
@@ -71,16 +80,18 @@
         for (const option of select.selectedOptions) {
             if (set.has(option.value)) set.delete(option.value);
             else set.add(option.value);
-        }
+        };
         for (const option of select.options) {
             option.selected = set.has(option.value);
-        }
+        };
+        filterState['page'].value = null;
         submitWithState();
     };
 
     const handleSingleSelect = (value: string, key: string, toggleable: boolean) => {
         const current = filterState[key].value;
         filterState[key].value = (toggleable && current === value) ? null : value;
+        if (key !== 'page') filterState['page'].value = null;
         submitWithState();
     };
 </script>
@@ -176,7 +187,3 @@
         </div>
     </form>
 </div>
-
-<style>
-    @import '../../styles/secondary_style.css';
-</style>

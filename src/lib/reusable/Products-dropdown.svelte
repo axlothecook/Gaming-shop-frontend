@@ -1,10 +1,21 @@
 <script lang="ts">
     import { slide } from 'svelte/transition';
     import ArrowDown from "$lib/icons/arrows/Arrow-down.svelte";
-
     const { title, children } = $props();
-    let counter: boolean = $state(true);
-    const onclick = () => counter = !counter;
+    const storageKey = `dropdown:${title}`;
+
+    const initialCounter = (() => {
+        if (typeof window === 'undefined') return true;
+        const stored = sessionStorage.getItem(storageKey);
+        return stored === null ? true : stored === 'true';
+    })();
+
+    let counter: boolean = $state(initialCounter);
+    
+    const onclick = () => {
+        counter = !counter;
+        sessionStorage.setItem(storageKey, String(counter));
+    };
 </script>
 
 <section> 

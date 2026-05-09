@@ -1,17 +1,40 @@
 <script lang="ts">
     import Star from "$lib/icons/Star.svelte";
     let { product } = $props();
+    let imgLoaded = $state(false);
+    let showImgSpinner = $state(false);
+
+    $effect(() => {
+        if (!imgLoaded) {
+            const timeout = setTimeout(() => { showImgSpinner = true; }, 400);
+            return () => clearTimeout(timeout);
+        };
+    });
 </script>
 
 <a href="/games/{product._id}">
-    <div class="product-card-wrapper" id="{product._id}">
-    <div class="product-card-img" style="background-image: {product.url || 'linear-gradient(to right, red , yellow)'}"></div>
+    <div class="product-card-wrapper" id={product._id}>
+        <div class="product-card-img">
+            {#if !imgLoaded && showImgSpinner}
+                <div class="img-spinner-overlay">
+                    <div class="spinner"></div>
+                </div>
+            {/if}
+            {#if product.url}
+                <img
+                    src={product.url}
+                    alt={product.name}
+                    onload={() => imgLoaded = true}
+                    class:loaded={imgLoaded}
+                />
+            {/if}
+        </div>
         <div class="product-card-info">
             <h2>{product.name}</h2>
             <div class="developer-card-info">
                 <h3>
                     {#each product.developers as dev}
-                        {#if dev !== product.developers[product.developers.length - 1]} 
+                        {#if dev !== product.developers[product.developers.length - 1]}
                             {dev},&nbsp
                         {:else}
                             {dev}
@@ -32,7 +55,7 @@
                 <h4>
                     {#if product.price === 0}
                         Free
-                    {:else if (!product.price) }
+                    {:else if (!product.price)}
                         --
                     {:else}
                         ${product.price}

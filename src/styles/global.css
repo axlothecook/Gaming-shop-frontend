@@ -280,12 +280,28 @@ form[action="/search"] button:hover {
 }
 
 .product-card-img {
-  height: 13.5rem;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #2a2a2a;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+
+.product-card-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card-img img.loaded {
+  opacity: 1;
 }
 
 .developer-card-info h3 {

@@ -10,16 +10,29 @@
 .product-content {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    border: 1px soldi blue;
 }
 
 .product-image {
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #2a2a2a;      
+    aspect-ratio: 6 / 7;             
+    position: relative;
+    overflow: hidden;
     border-radius: 20px;
-    height: 30rem;
-    /* border: 1px solid blue; */
+}
+
+.product-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-image img.loaded {
+    opacity: 1;
 }
 
 .product-info {
