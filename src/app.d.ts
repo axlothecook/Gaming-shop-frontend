@@ -7,12 +7,6 @@ declare global {
 		type StringOrAny = string | any;
 		type FilterStateEntry = { value: Set<string> | string | null };
 		type Params = string | string[] | null;
-
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface PageState {}
-		// interface Platform {}
 		interface NavbarLink {
 			id: number;
 			href: string;
@@ -28,41 +22,27 @@ declare global {
 		interface GameObject {
 			_id: string,
 			name: string,
-			url: string, 
+			url: string,
 			imgName: string,
-			genres: Array,
-			developers: Array,
+			genres: string[],
+			developers: string[],
 			price: NumOrNull,
 			description: string,
 			rating: NumOrNull,
 			isDefault: boolean
 		}
 
-		type ObjOrNull = GameObject | null;
-
-		interface CategoryObject {
-			_id: string,
-			name: string,
-			isDefault: boolean
-		}
-
-		interface CategoryDetailsObject {
-			title: string,
-			path: string,
-			array: CategoryObject[]
-		}
-
 		interface ErrorObject {
 			type: string;
-			body: Array[StringOrAny];
+			body: StringOrAny[];
 			code: number;
 		}
 
 		interface FilterConfig {
-			key: string;           // URL param name
-			arrayKey: string;       // key on responseBody.data / gamesData
+			key: string;
+			arrayKey: string;
 			type: 'multi' | 'single';
-			toggleable?: boolean;   // can the user click again to deselect (price yes, sort/page no)
+			toggleable?: boolean;
 		};
 	}
 }
@@ -71,8 +51,6 @@ export {
 	NavbarLink,
 	PaginationObject,
 	GameObject,
-	CategoryObject,
-	CategoryDetailsObject,
 	ErrorObject,
 	FilterConfig,
 

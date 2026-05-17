@@ -3,13 +3,10 @@ import { LINK } from '$env/static/private';
 import { error } from "@sveltejs/kit";
 
 export const load: Load = async () => {
-  console.log("This is load dev function");
 
-  // await new Promise(resolve => setTimeout(resolve, 3000));
   const response = await fetch(`${LINK}/developers`);
   const responseBody = await response.json();
 
-//   console.log('response developers: ', responseBody.data);
 
   if (responseBody.errCode) {
     error(500, {

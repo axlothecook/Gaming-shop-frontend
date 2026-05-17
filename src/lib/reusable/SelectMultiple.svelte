@@ -5,6 +5,7 @@
         arr, 
         title = null, 
         selectTitle = null, 
+        field = null,
         onchange = null,
         counts = {},
         selected = new Set<string>()
@@ -12,10 +13,11 @@
 </script>
 
 <div>
-    {#if selectTitle }
-        <h4 style="padding-bottom: .7rem">{title}</h4>
+    {#if selectTitle}
+        <h3 class="pb-0-7">{selectTitle}</h3>
     {/if}
     <select 
+        class="default-select"        
         onchange={onchange} 
         multiple
     >

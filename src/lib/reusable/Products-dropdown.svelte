@@ -19,9 +19,10 @@
 </script>
 
 <section> 
-    <div class="create-selects">
-        <button 
-            class="filter-category"
+    <div class="column-nowrap gap-0-3 w-full">
+        <button
+            class="row-nowrap justify-content-space-between gap-1 pt-0-5 pb-0-5 pl-1 pr-1 br-xs w-full t border-style-solid border-width-1 bg-hover-primary-dark-4"
+            style="touch-action: manipulation;"
             {onclick}
             type="button"
         >

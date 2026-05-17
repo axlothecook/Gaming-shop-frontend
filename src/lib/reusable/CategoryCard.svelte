@@ -12,7 +12,7 @@
 </script>
 
 <a href="/{path}/{item._id.toString()}">
-    <div class="category-card">
+    <div class="default-only-image-card">
         {#if !imgLoaded && showImgSpinner}
             <div class="img-spinner-overlay">
                 <div class="spinner"></div>
@@ -25,7 +25,7 @@
             class:loaded={imgLoaded}
         />
         {#if path !== 'developers'}
-            <div class="genre-card">
+            <div class="card-overlay-frosted">
                 <h3>{item.name}</h3>
             </div>
         {/if}

@@ -13,7 +13,7 @@
 </script>
 
 {#if visible && error}
-    <ul id="error-wrapper">
+    <ul class="default-error-popup-wrapper">
         {#each error.body as err (err.msg)}
             <li>{err.msg}</li>
         {/each}

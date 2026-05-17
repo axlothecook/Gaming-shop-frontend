@@ -4,15 +4,12 @@ import { fail, error, redirect } from '@sveltejs/kit';
 import { LINK, SVELTE_URL } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
-  console.log("This is load game function");
   const { slug } = params;
 
-  // console.log('url: ', slug);
 
   const response = await fetch(`${LINK}/games/${slug}`);
   const responseBody = await response.json();
 
-  // console.log('response id: ', responseBody);
 
   if (responseBody.errCode) {
     error(responseBody.errCode, {
@@ -29,12 +26,10 @@ export const actions = {
   delete: async ({params}) => {
 
     const { slug } = params;
-    // console.log('dlt game request: ', params);
 
     const response = await fetch(`${LINK}/games/${slug}/delete`);
     const responseBody = await response.json();
 
-    // console.log('responseBody DELETE: ', responseBody);
 
     if (responseBody.errCode) {
       if (responseBody.errCode === 500) {

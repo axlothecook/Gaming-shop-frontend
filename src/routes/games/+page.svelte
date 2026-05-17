@@ -2,10 +2,9 @@
     import { beforeNavigate } from '$app/navigation';
     import AddNew from "$lib/reusable/AddNew.svelte";
     import ProductsDropdown from "$lib/reusable/Products-dropdown.svelte";
-    import '../../styles/products_page.css';
     import GameCard from "$lib/reusable/Game-card.svelte";
     import RadioInput from "$lib/reusable/RadioInput.svelte";
-    import SelecMultiple from "$lib/reusable/SelectMultiple.svelte";
+    import SelectMultiple from "$lib/reusable/SelectMultiple.svelte";
     import SortBy from "$lib/reusable/SortBy.svelte";
     import SelectOne from "$lib/reusable/SelectOne.svelte";
     import { filterConfigs } from "$lib/filters";
@@ -96,15 +95,16 @@
     };
 </script>
 
-<div class="content">
+<div class="column-nowrap gap-1 pt-1-5 w-full">
     <AddNew title="Games" path="games" />
-    <form method="GET" action="/games" id="main-form">
-        <div class="main-content">
-            <div class="filters-wrapper">
-                <!-- sort -->
+    <form method="GET" action="/games" id="main-form" class="pt-1">
+        <div class="grid gap-2 main-content" style="grid-template-columns: 1fr 4fr;">
+            <div class="column-nowrap gap-1-2 filters-wrapper">
                 <div>
-                    <h2>Sort By</h2>
-                    <div class="radio-input-div">
+                    <div class="border-style-solid border-width-1 br-xs p-0-5">
+                        <h2>Sort By</h2>
+                    </div>
+                    <div class="column-wrap gap-0-6 p-0-5 mt-0-5">
                         <SortBy 
                             array={data.gamesData.sortInputArr} 
                             activeSort={data.selectedParams['sort']}
@@ -113,9 +113,8 @@
                     </div>
                 </div>
 
-                <!-- name -->
                 <ProductsDropdown title="Name">
-                    <SelecMultiple 
+                    <SelectMultiple 
                         arr={data.gamesData.alphabetArray} 
                         title="Name" 
                         selected={filterState['Name'].value}
@@ -125,7 +124,6 @@
                 </ProductsDropdown>
 
 
-                <!-- price -->
                 <ProductsDropdown title="Price">
                     <SelectOne 
                         arr={data.gamesData.priceArray} 
@@ -135,9 +133,8 @@
                     />
                 </ProductsDropdown>
 
-                <!-- rating -->
                 <ProductsDropdown title="Rating">
-                    <SelecMultiple 
+                    <SelectMultiple 
                         arr={data.gamesData.ratingArray} 
                         title="Rating" 
                         selected={filterState['Rating'].value}
@@ -146,9 +143,8 @@
                     />
                 </ProductsDropdown>
 
-                <!-- genre -->
                 <ProductsDropdown title="Genres">
-                    <SelecMultiple 
+                    <SelectMultiple 
                         arr={data.gamesData.genresArr} 
                         title="Genres" 
                         selected={filterState['Genres'].value}
@@ -157,9 +153,8 @@
                     />
                 </ProductsDropdown>
 
-                <!-- devs -->
                 <ProductsDropdown title="Developers">
-                    <SelecMultiple 
+                    <SelectMultiple 
                         arr={data.gamesData.devsArr} 
                         title="Developers" 
                         selected={filterState['Developers'].value}
@@ -168,13 +163,13 @@
                     />
                 </ProductsDropdown>
             </div>
-            <div class="product-list-container">
-                <div class="products-list">
+            <div class="column-nowrap gap-3">
+                <div class="grid gap-2 products-list" style="grid-auto-rows: 0fr;">
                     {#each data.gamesData.gamesArr as product (product._id) }
                         <GameCard product={product} />
                     {/each}
                 </div>
-                <div class="pagination-wrapper">
+                <div class="row-nowrap align-items-center justify-content-center gap-0-5 pb-2">
                     {#each pagesLengthArr as page (page.id) } 
                         <RadioInput 
                             item={page} 
@@ -187,3 +182,40 @@
         </div>
     </form>
 </div>
+
+<style lang="scss">
+    @use 'axlothecook-sass-library/sass-library/breakpoints' as bp;
+
+    .products-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include bp.xxl-down {
+        .main-content {
+            grid-template-columns: 1fr 3fr;
+        }
+
+        .products-list {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @include bp.md-down {
+        .main-content {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .products-list {
+            grid-template-columns: 1fr;
+        }
+    }
+    @include bp.sm-down {
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .filters-wrapper {
+            gap: 1rem;
+        }
+    }
+</style>

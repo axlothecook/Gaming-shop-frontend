@@ -5,13 +5,11 @@ import { filterConfigs } from "$lib/filters";
 import type { Params } from '../../app';
 
 export const load: Load = async ({ url }) => {
-  console.log("This is load games function", url.search);
   const response = (url.search.length > 0) 
     ? await fetch(`${LINK}/games${url.search}`) 
     : await fetch(`${LINK}/games`);
   const responseBody = await response.json();
 
-  // console.log('parent page: ', responseBody);
 
   if (responseBody.errCode) {
     error(500, {

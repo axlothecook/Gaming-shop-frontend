@@ -9,10 +9,10 @@
     } = $props();
 </script>
 
-<div class="select-imitation">
+<div class="default-radio-input-container">
     {#each arr as item (item.id)}
-        <button 
-            class="select-radio-btn" 
+        <button
+            class="default-radio-input-btn"
             class:selected={String(selected) === String(item.value)}
             type="button"
             onclick={() => onclick(item.value)}

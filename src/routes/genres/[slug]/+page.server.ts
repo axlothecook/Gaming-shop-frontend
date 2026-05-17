@@ -4,15 +4,12 @@ import { LINK, SVELTE_URL } from '$env/static/private';
 import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
-  console.log("This is load genre function");
   const { slug } = params;
 
-  // console.log('url: ', slug);
 
   const response = await fetch(`${LINK}/genres/${slug}`);
   const responseBody = await response.json();
 
-  // console.log('response: ', responseBody);
 
   if (responseBody.errCode) {
     error(responseBody.errCode, {
@@ -32,12 +29,10 @@ export const actions = {
   delete: async ({params}) => {
 
     const { slug } = params;
-    // console.log('dlt genre request: ', params);
 
     const response = await fetch(`${LINK}/genres/${slug}/delete`);
     const responseBody = await response.json();
 
-    // console.log('responseBody: ', responseBody);
 
     if (responseBody.errCode) {
       if (responseBody.errCode === 500) {

@@ -9,7 +9,6 @@ export const load: Load = async ({ params }) => {
   const response = await fetch(`${LINK}/games/${slug}/update`);
   const responseBody = await response.json();
 
-//   console.log('response: ', responseBody);
 
   if (responseBody.errCode) {
     error(responseBody.errCode, {
@@ -26,18 +25,17 @@ export const load: Load = async ({ params }) => {
 
 export const actions = {
   default: async ({ request, params }) => {
-    console.log('in update game function');
 
     const { slug } = params;
 
     const formData = await request.formData();
-    // console.log('formdata: ', formData);
 
     const response = await fetch(`${LINK}/games/${slug}/update`, {
       method: 'POST',
       body: formData
     });
     const responseBody = await response.json();
+
 
     if (responseBody.errCode) {
       if (responseBody.errCode === 500) {
@@ -55,7 +53,6 @@ export const actions = {
       };
     };
 
-    // console.log('responseBody: ', responseBody);
     redirect(303, `${SVELTE_URL}/games/${slug}`);
   }
 } satisfies Actions;

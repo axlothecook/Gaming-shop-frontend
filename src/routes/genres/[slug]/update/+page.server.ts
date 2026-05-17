@@ -4,15 +4,12 @@ import type { Actions } from './$types';
 import { LINK, SVELTE_URL } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
-  console.log("This is load games function");
   const { slug } = params;
 
-//   console.log('url: ', slug);
 
   const response = await fetch(`${LINK}/genres/${slug}/update`);
   const responseBody = await response.json();
 
-//   console.log('response: ', responseBody.data);
 
   if (responseBody.errCode) {
     error(responseBody.errCode, {
@@ -28,7 +25,6 @@ export const load: Load = async ({ params }) => {
 
 export const actions = {
   default: async ({ request, params }) => {
-    console.log('in update game function');
 
     const { slug } = params;
 
@@ -39,7 +35,6 @@ export const actions = {
     });
 
     const responseBody = await response.json();
-    // console.log('responseBody: ', responseBody);
 
     if (responseBody.errCode) {
       if (responseBody.errCode === 500) {

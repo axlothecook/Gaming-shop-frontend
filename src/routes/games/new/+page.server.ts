@@ -4,12 +4,10 @@ import { fail, redirect, error } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const load: Load = async () => {
-  console.log("This is load new game function");
 
   const response = await fetch(`${LINK}/games/new`);
   const responseBody = await response.json();
 
-//   console.log('responseBody: ', responseBody);
 
   if (responseBody.errCode) {
     error(500, {
@@ -26,10 +24,8 @@ export const load: Load = async () => {
 
 export const actions = {
   default: async ({ request }) => {
-    console.log('in create game function');
 
     const formData = await request.formData();
-    // console.log('formdata: ', formData);
 
     const response = await fetch(`${LINK}/games/new`, {
       method: 'POST',
@@ -37,7 +33,6 @@ export const actions = {
     });
     const responseBody = await response.json();
 
-    // console.log('responseBody: ', responseBody);
 
     if (responseBody.errCode) {
       if (responseBody.errCode === 500) {

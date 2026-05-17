@@ -1,4 +1,4 @@
-<svg class="logo-svg" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 192 192" id="favicon">
+<svg class="w-1-2 fill-transparent" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 192 192" id="favicon">
     <circle cx="53.5" cy="53.5" r="31.5" stroke="#f5ebd0" stroke-width="12"></circle>
     <circle cx="53.5" cy="138.5" r="31.5" stroke="#f5ebd0" stroke-width="12"></circle>
     <circle cx="138.5" cy="138.5" r="31.5" stroke="#f5ebd0" stroke-width="12"></circle>
