@@ -1,6 +1,6 @@
 import type { Load } from "@sveltejs/kit";
 import type { Actions } from './$types';
-import { LINK, SVELTE_URL } from '$env/static/private';
+import { LINK } from '$env/static/private';
 import { error, fail, redirect } from '@sveltejs/kit';
 
 export const load: Load = async ({ params }) => {
@@ -50,6 +50,6 @@ export const actions = {
       };
     };
 
-    redirect(303, `${SVELTE_URL}/genres`);
+    redirect(303, '/genres');
   } 
 } satisfies Actions;

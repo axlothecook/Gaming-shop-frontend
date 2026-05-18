@@ -1,7 +1,7 @@
 import type { Load } from "@sveltejs/kit";
 import { fail, redirect, error } from '@sveltejs/kit';
 import type { Actions } from './$types';
-import { LINK, SVELTE_URL } from '$env/static/private';
+import { LINK } from '$env/static/private';
 
 export const load: Load = async ({ params }) => {
   const { slug } = params;
@@ -53,6 +53,6 @@ export const actions = {
       };
     };
 
-    redirect(303, `${SVELTE_URL}/games/${slug}`);
+    redirect(303, `/games/${slug}`);
   }
 } satisfies Actions;

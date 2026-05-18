@@ -1,5 +1,5 @@
 import type { Load } from "@sveltejs/kit";
-import { LINK, SVELTE_URL } from '$env/static/private';
+import { LINK } from '$env/static/private';
 import { fail, redirect, error } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -50,6 +50,6 @@ export const actions = {
       };
     };
 
-    redirect(303, `${SVELTE_URL}/games/${responseBody.data.gameID}`);
+    redirect(303, `/games/${responseBody.data.gameID}`);
   }
 } satisfies Actions;

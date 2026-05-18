@@ -1,4 +1,4 @@
-import { LINK, SVELTE_URL } from '$env/static/private';
+import { LINK } from '$env/static/private';
 import { error, fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
@@ -30,6 +30,6 @@ export const actions = {
       };
     };
 
-    redirect(303, `${SVELTE_URL}/developers/${responseBody.data.gameID}`);
+    redirect(303, `/developers/${responseBody.data.gameID}`);
   }
 } satisfies Actions;
