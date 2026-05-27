@@ -1,4 +1,21 @@
-# sv
+# gaming-shop-frontend
+
+The Gaming Shop web UI — talks to the `Gaming-Shop` backend API.
+
+## Stack (what each tool is for)
+
+- **SvelteKit** + **`@sveltejs/adapter-node`** — the app framework; adapter-node
+  builds it as a Node server (runs in a container on the Pi).
+- **Vite** — dev server + bundler.
+- **TypeScript** — typed components/data.
+- **Sass** + **`axlothecook-sass-library`** — styling; pulls shared
+  styles/mixins from the project's own Sass library (GitHub dependency).
+
+Backend URL is baked in at build time via the `LINK` arg (inside the Compose
+network the backend is `http://backend:3000`). Deploy details: see the
+`gaming-shop-deploy` repo.
+
+---
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
 
