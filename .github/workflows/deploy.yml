@@ -1,7 +1,10 @@
-# Build the frontend Docker image and publish it to GHCR.
-# Runs on every push to main. (The deploy-to-Pi step is added after Stage 5 —
-# Cloudflare Tunnel — once the Pi is reachable from the internet.)
-name: Build and publish frontend image
+# Build the frontend Docker image, publish it to GHCR, then deploy to the Pi.
+# Runs on every push to main:
+#   1. build-and-push — build the arm64 image and push it to GHCR.
+#   2. deploy-to-pi    — join the tailnet, SSH to the Pi, pull + restart the stack.
+# The Pi is reached privately over Tailscale (no public SSH); the public site
+# itself is served via the Cloudflare Tunnel (gameshop.axlothecook.com).
+name: Build, publish, and deploy frontend
 
 on:
   push:
@@ -42,3 +45,35 @@ jobs:
           tags: ghcr.io/axlothecook/gaming-shop-frontend:latest
           build-args: |
             LINK=http://backend:3000
+
+  # --- Deploy the freshly-built stack onto the Raspberry Pi ------------------
+  # Reaches the Pi privately over Tailscale (the runner joins the tailnet as an
+  # ephemeral node that auto-removes after the run), then SSHes in and rolls the
+  # whole compose stack. Only runs if build-and-push succeeded.
+  deploy-to-pi:
+    needs: build-and-push          # don't deploy unless the new image actually pushed
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Join the private Tailscale network as a throwaway ("ephemeral") node.
+      #    OAuth client is scoped + revocable; the node is tagged tag:ci and is
+      #    deleted automatically once the job finishes.
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      # 2. SSH to the Pi over its private tailnet IP and roll the stack.
+      #    pull = fetch the new images from GHCR; up -d = recreate changed
+      #    containers (unchanged ones are left running).
+      - name: Deploy on the Pi
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PI_TAILSCALE_IP }}   # the Pi's 100.x.y.z tailnet IP
+          username: ${{ secrets.PI_USER }}       # axel
+          key: ${{ secrets.PI_SSH_KEY }}         # CI's PRIVATE deploy key
+          script: |
+            cd ~/gaming-shop-deploy
+            docker compose -f docker-compose.prod.yml pull
+            docker compose -f docker-compose.prod.yml up -d
