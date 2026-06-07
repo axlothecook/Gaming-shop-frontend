@@ -2,6 +2,11 @@
 
 The Gaming Shop web UI — talks to the `Gaming-Shop` backend API.
 
+## Related repositories
+
+- [Back end](https://github.com/axlothecook/Gaming-Shop)
+- [gaming-shop-deploy](https://github.com/axlothecook/gaming-shop-deploy)
+
 ## Stack (what each tool is for)
 
 - **SvelteKit** + **`@sveltejs/adapter-node`** — the app framework; adapter-node
