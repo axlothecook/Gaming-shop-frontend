@@ -20,7 +20,7 @@ There is no account creation or shopping cart. This might be questionable as the
 ## How it talks to the backend
 The graph demonstrates the flow of how frontend and backend communicate requests and responses, with a possibility of failures. Basically the Cloudflare Tunnel sends visitors straight to the SvelteKit server. Pages render there, and forms submit there too via form actions. The frontend server then calls the backend over the private Docker network; the backend address is baked in at build time and never reaches the browser. The backend and the database have no public address at all.
 
-![image](https://github.com/user-attachments/assets/914003d1-1da3-4571-9296-aa40508072ca)
+![image](https://github.com/user-attachments/assets/1adc7a4f-da24-410f-a114-92b70ebbb2c0)
 <br />
 <br />
 
