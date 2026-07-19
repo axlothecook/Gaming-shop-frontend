@@ -22,6 +22,11 @@ jobs:
   # node-only (the loader tests mock the backend), so the job is light.
   test:
     runs-on: ubuntu-latest
+    env:
+      # $env/static/private requires LINK to exist when svelte-kit sync generates
+      # the env types. CI has no .env, so provide a dummy value here; the tests
+      # mock LINK and never call anything real.
+      LINK: http://backend:3000
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
