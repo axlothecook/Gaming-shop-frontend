@@ -38,14 +38,6 @@ The server load functions that deliver backend data to the pages are covered by 
 <br />
 <br />
 
-## Related repositories
-[Back end](https://github.com/axlothecook/Gaming-Shop): Express + MongoDB API <br />
-[Deploy](https://github.com/axlothecook/gaming-shop-deploy): the Docker Compose stack that runs everything on my Raspberry Pi <br />
-[CI/CD pipeline](https://github.com/axlothecook/homelab-ci-cd): how every push gets built and deployed <br />
-[Umbrella](https://github.com/axlothecook/gameshop): A joint repo for all Gaming Shop related repositories
-<br />
-<br />
-
 ## Demo photos
 ### Landing homepage
 ![image](https://github.com/user-attachments/assets/9e060c40-4ded-411b-97f9-bb22b74af75b)
